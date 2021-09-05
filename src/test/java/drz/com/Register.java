@@ -42,20 +42,17 @@ public class Register extends Base{
                 break;
             }
         }
-//        //Selecting Year
-//        WebElement year= findById("year");
-//        year.click();
-
-//        List<WebElement>YrList = driver.findElements(By.xpath("//ul[@class='next-menu-content']//li"));
-//        for (int i=0; i<YrList.size(); i++){
-//            WebElement list3 = YrList.get(i);
-//            String innerList3 = list3.getAttribute("innerHTML");
-//            System.out.println(innerList3);
-//            if (innerList3.contentEquals("2020")){
-//                list3.click();
-//                break;
-//            }
-//        }
+//Selecting Year
+        findById("year").click();
+        List<WebElement>YrList = driver.findElements(By.xpath("//ul[@class='next-menu-content']//li"));
+        for (WebElement list3 : YrList) {
+            String innerList3 = list3.getAttribute("innerHTML");
+            System.out.println(innerList3);
+            if (innerList3.contentEquals("2020")) {
+                list3.click();
+                break;
+            }
+        }
 
 //        WebElement slider_container = findByXpath("//*[@id=\"nc_2__scale_text\"]/span");
 //        WebElement Slider = findByXpath("//*[@id=\"nc_2_n1z\"]");
