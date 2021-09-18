@@ -1,12 +1,13 @@
-package drz.com;
+package drz.com.Register;
 
+import drz.com.Base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
 
-public class Register extends Base{
+public class Register extends Base {
     public static void main(String[] args) {
         ChromeOpen();
         GetUrl("https://member.daraz.com.bd/user/register");

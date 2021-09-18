@@ -4,6 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Base {
     public static WebDriver driver;
@@ -11,8 +15,11 @@ public class Base {
     }
 
     public static void ChromeOpen(){
+        ChromeOptions op = new ChromeOptions();
+        op.addArguments("--disable-notifications");
+
         System.setProperty("webdriver.chrome.driver","./src/main/resources/chromedriver.exe");
-        driver=new ChromeDriver();
+        driver=new ChromeDriver(op);
         driver.manage().window().maximize();
     }
     public static void ChromeClose(){
