@@ -1,17 +1,28 @@
 package drz.com.Login;
 
 import drz.com.Base;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Login_Drz extends Base {
     public static void main(String[] args) {
         ChromeOpen();
-        GetUrl("https://member.daraz.com.bd/user/login");
+        GetUrl("https://member.daraz.com.bd/user/login?spm=a2a0e.home.header.d5.735212f7kMyZYG&redirect=https%3A%2F%2Fwww.daraz.com.bd%2F");
         TC_DZ_LOGIN_001();
+        GetUrl("https://member.daraz.com.bd/user/login?spm=a2a0e.home.header.d5.735212f7kMyZYG&redirect=https%3A%2F%2Fwww.daraz.com.bd%2F");
+        TC_DZ_LOGIN_002();
     }
+    //Valid Data
 
-    public static void TC_DZ_LOGIN_001(){
+    public static void TC_DZ_LOGIN_001() {
+
         WebElement NumField = findByXpath("//*[@id=\"container\"]/div/div[2]/form/div/div[1]/div[1]/input");
         NumField.click();
         NumField.sendKeys("01521326396");
@@ -23,23 +34,43 @@ public class Login_Drz extends Base {
         WebElement loginBtn = findByClass("next-btn-primary");
         loginBtn.click();
 
-//        WebElement MyAcc = driver.findElement(By.linkText("TRACK MY ORDER"));
-//        MyAcc.click();
+        driver.navigate().refresh();
 
-         WebElement MyAcc = findByXpath("//*[@id=\"myAccountTrigger\"]");
-         MyAcc.click();
+        boolean AccNm = findById("myAccountTrigger").isDisplayed();
+             if (AccNm == true){
+                 System.out.println("TC_DZ_LOGIN_001 Passed");
+                 driver.get("https://member.daraz.com.bd/user/logout?spm=a2a0e.home.header.17.735212f7iBiwMT");
+                }
+             else {
+                    System.out.println("TC_DZ_LOGIN_001 Failed");
+                }
 
-         findById("myAccountTrigger").click();
+        }
+    public static void TC_DZ_LOGIN_002() {
 
-         WebElement CustomerC = findByXpath("//*[@id=\"topActionCustomCare\"]/span");
-         CustomerC.click();
+        WebElement NumField = findByXpath("//*[@id=\"container\"]/div/div[2]/form/div/div[1]/div[1]/input");
+        NumField.click();
+        NumField.sendKeys("00012345");
 
-//        String Actual = driver.getTitle();
-//        System.out.println("Title is :"+ Actual);
+        WebElement PassFld = findByXpath("//*[@id=\"container\"]/div/div[2]/form/div/div[1]/div[2]/input");
+        PassFld.click();
+        PassFld.sendKeys("abir1100");
 
-//        if (driver.findElement(By.xpath("//*[@id=\"myAccountTrigger\"]")).getSize()!=0){
-//
-//        }
+        WebElement loginBtn = findByClass("next-btn-primary");
+        loginBtn.click();
+
+        driver.navigate().refresh();
+
+        boolean AccNm = findById("myAccountTrigger").isDisplayed();
+        if (AccNm == true){
+            System.out.println("TC_DZ_LOGIN_002 Failed");
+            driver.get("https://member.daraz.com.bd/user/logout?spm=a2a0e.home.header.17.735212f7iBiwMT");
+        }
+        else {
+            System.out.println("TC_DZ_LOGIN_002 Passed");
+        }
 
     }
-}
+
+
+    }
